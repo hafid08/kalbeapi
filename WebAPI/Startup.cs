@@ -24,14 +24,11 @@ namespace WebAPI
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             // Add KalbeContext
             DbContextOptions<KalbeContext> kalbeContextOptions = null;
             services.AddDbContext<KalbeContext>(optionsBuilder =>
@@ -43,16 +40,8 @@ namespace WebAPI
                 kalbeContextOptions = (DbContextOptions<KalbeContext>)optionsBuilder.Options;
             });
 
-
-            services.AddScoped<IKalbeDbInitializer, KalbeDbInitializer>();
-            IServiceProvider serviceProvider = services.BuildServiceProvider();
-            // Initilize database
-            IKalbeDbInitializer loyaltoDbInitializer = serviceProvider.GetService<IKalbeDbInitializer>();
-            loyaltoDbInitializer.InitializeAsync();
-
-
-            //Add DbContextOption
-            services.AddSingleton(kalbeContextOptions);
+            services.AddCors();
+            services.AddControllers();
 
             // Add MediatR
             services.AddMediatR();
@@ -62,17 +51,23 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(x => x.MapControllers());
         }
     }
 }
