@@ -1,5 +1,6 @@
 ﻿using KalbeData;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace WebAPI.Controllers
             this.dbContextOptions = dbContextOptions;
             this.mediator = mediator;
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -52,6 +53,7 @@ namespace WebAPI.Controllers
                 return Ok(new FailedReturnValue(ex.Message));
             }
         }
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {

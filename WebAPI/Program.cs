@@ -27,5 +27,6 @@ namespace WebAPI
             }).UseContentRoot(Directory.GetCurrentDirectory())
             .UseUrls("http://localhost:5050")
             .UseStartup<Startup>();
+
     }
 }

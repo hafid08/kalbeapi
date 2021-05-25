@@ -1,0 +1,9 @@
+D:\Kalbe\WebAPI\KalbeData\bin\Debug\netcoreapp3.1\KalbeData.deps.json
+D:\Kalbe\WebAPI\KalbeData\bin\Debug\netcoreapp3.1\KalbeData.dll
+D:\Kalbe\WebAPI\KalbeData\bin\Debug\netcoreapp3.1\KalbeData.pdb
+D:\Kalbe\WebAPI\KalbeData\obj\Debug\netcoreapp3.1\KalbeData.csprojAssemblyReference.cache
+D:\Kalbe\WebAPI\KalbeData\obj\Debug\netcoreapp3.1\KalbeData.AssemblyInfoInputs.cache
+D:\Kalbe\WebAPI\KalbeData\obj\Debug\netcoreapp3.1\KalbeData.AssemblyInfo.cs
+D:\Kalbe\WebAPI\KalbeData\obj\Debug\netcoreapp3.1\KalbeData.csproj.CoreCompileInputs.cache
+D:\Kalbe\WebAPI\KalbeData\obj\Debug\netcoreapp3.1\KalbeData.dll
+D:\Kalbe\WebAPI\KalbeData\obj\Debug\netcoreapp3.1\KalbeData.pdb
